@@ -1,0 +1,127 @@
+body {
+    background-color: #c7c7c7;
+}
+
+.ex1 {
+    background-color:#ffe7c7;
+    color: #027c1a;
+    border: 4px solid #2300d3;
+    text-align: center;
+    padding: 35px;
+    height: 170px;
+    font-size: 25px;
+}
+
+img#A {
+    position: absolute;
+    top: 3%;
+    left: 1%;
+}
+
+img#B {
+    position: absolute;
+    top: 2%;
+    right: 1.5%;
+}
+
+.menu {
+    background-color: #8cccf7;
+    color: #690015;
+    text-align: center;
+    padding: 1px;
+    font-size: 17px;
+    height: 55px;
+    word-spacing: 165px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 22pt;
+}
+
+.roxo {
+    text-align: center;
+    color: #6b3092;
+    font-family: serif, monospace, 'Times New Roman';
+    font-size: 20pt;
+}
+  
+  #C {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .col-1 {
+    display: fixed;
+    float: left;
+    width: 20%;
+    padding: 3px;
+  }
+
+  .box { 
+    display:inline-block; 
+}
+
+.clear{
+    clear:both;
+}
+
+table, th, td {
+    border:1px double red;
+    text-align: center;
+    padding: 10px;
+  }
+
+  #table1 {
+    border-collapse: separate;
+    border: 4px dashed red;
+    padding: 0px;
+  }
+
+  .centerTable { 
+    margin: 0px auto;
+ }
+
+
+
+.ex2 {
+    background-color: yellow;
+    width: 30%;
+    margin-left: 650px;
+    padding: 0px;
+ }
+
+ #ladoalado {
+  display: flex;
+  justify-content: space-evenly;
+ }
+ 
+ a:link {
+  color: darkred;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+#img6{
+  position: absolute;
+  top: 220%;
+  left: 0%;
+}
+
+#img7{
+  position: absolute;
+  top: 220%;
+  right: 1.5%;
+}
+
+.rodape {
+  background-color: bisque;
+  font-size: 19pt;
+  text-align: center;
+  width: 100%;
+  top: 223%;
+  height: 300px;
+  font-family: "Comic Sans Ms", monospace, "Times New Roman";
+
+}
+
