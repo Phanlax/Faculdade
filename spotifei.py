@@ -1,6 +1,7 @@
-open ("cadastros.txt","a")
-open ("historico.txt", "w")
-open ("musicas_curtidas.txt","w+")
+open ("cadastros.txt","a+")
+open ("historico.txt", "a+")
+open ("musicas_curtidas.txt","a+")
+
 
 
 
@@ -76,26 +77,26 @@ def menu_principal(usuario):
 def buscar_musicas(usuario):
     while True:
         with open("musicas.txt", "r") as musicas:
-            nome = input("\n Digite o nome da musica: ").lower() 
+            nome = input("\n Digite o nome da musica: ")
             for m in musicas:
-             if f"titulo: {nome}" in m:
-                print(f"{m['titulo']} - {m['artista']} ({m['genero']}, {m['duracao']})")
-                print("1-Curtir Musica")
-                print("2-Descurtir Musica")
-                print("3-Voltar")
-                a = input("escolha uma opção: ")
-                if a == "1":
-                 print("musica curtida.")
-                 with open ("musicas_curtidas.txt", "+r") as musicas_curtidas:
-                  with open  ("historico.txt", "w") as historico:
-                    historico.write(f"{m['titulo']} curtida")
-                    musicas_curtidas.write(f"{m['titulo']}")
-                elif a == "2":
-                 print("musica descurtida.")
-                elif a == "3":
-                 return menu_principal(usuario)        
-            else:
-             print("Musica não encontrada")
+                if f"titulo:{nome}" in m:
+                    print(f"{m['titulo']} - {m['artista']} ({m['genero']}, {m['duracao']})")
+                    print("1-Curtir Musica")
+                    print("2-Descurtir Musica")
+                    print("3-Voltar")
+                    a = input("escolha uma opção: ")
+                    if a == "1":
+                        print("musica curtida.")
+                        with open ("musicas_curtidas.txt", "+r") as musicas_curtidas:
+                            with open  ("historico.txt", "a+") as historico:
+                                historico.write(f"{m['titulo']} curtida")
+                                musicas_curtidas.write(f"{m['titulo']}")
+                    elif a == "2":
+                        print("musica descurtida.")
+                    elif a == "3":
+                        return menu_principal(usuario)        
+                else:
+                    print("Musica não encontrada")
 
 def listar_curtidas(usuario):
     while True:
