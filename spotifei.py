@@ -75,12 +75,13 @@ def menu_principal(usuario):
             print("Opção inválida.")
              
 def buscar_musicas(usuario):
-    while True:
+        nome = input("\n Digite o nome da musica: ")
         with open("musicas.txt", "r") as musicas:
-            nome = input("\n Digite o nome da musica: ")
-            for m in musicas:
-                if f"titulo:{nome}" in m:
-                    print(f"{m['titulo']} - {m['artista']} ({m['genero']}, {m['duracao']})")
+            salve = musicas.readlines()
+            for linha in salve:
+                titulo, nome_artista, genero, duracao = linha.strip().split(", ")
+                if nome.lower() == titulo.lower():
+                    print(f"{titulo} - {nome_artista} {genero}, {duracao}")
                     print("1-Curtir Musica")
                     print("2-Descurtir Musica")
                     print("3-Voltar")
@@ -106,12 +107,10 @@ def listar_curtidas(usuario):
 def playslist():
     ...
 
+# id: 1, titulo: Imagine, "artista": "John Lennon", "genero": "Rock", "duracao": "3:04"
+#     id: 2, titulo: Bohemian Rhapsody", "artista": "Queen", "genero": "Rock", "duracao": "5:55"
+#     id: 3, titulo: Shape of You", "artista": "Ed Sheeran", "genero": "Pop", "duracao": "4:24"
+#     id: 4, titulo: Blinding Lights, "artista": "The Weeknd", "genero": "Synthpop", "duracao": "3:20
 
 
-# musicas = [
-#     {"id": 1, "titulo": "Imagine", "artista": "John Lennon", "genero": "Rock", "duracao": "3:04"},
-#     {"id": 2, "titulo": "Bohemian Rhapsody", "artista": "Queen", "genero": "Rock", "duracao": "5:55"},
-#     {"id": 3, "titulo": "Shape of You", "artista": "Ed Sheeran", "genero": "Pop", "duracao": "4:24"},
-#     {"id": 4, "titulo": "Blinding Lights", "artista": "The Weeknd", "genero": "Synthpop", "duracao": "3:20"},
-# ]
 menu_inicial()  
