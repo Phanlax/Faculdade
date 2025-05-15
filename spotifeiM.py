@@ -1,4 +1,8 @@
-open ("cadastros.txt","a")
+open ("cadastros.txt","a+")
+open ("historico.txt", "a+")
+open ("musicas_curtidas.txt","a+")
+
+
 
 
 def menu_inicial():
@@ -13,7 +17,7 @@ def menu_inicial():
             if usuario:
                 menu_principal(usuario)
         elif opcao == "2":
-            cadastro()
+             cadastro()
         elif opcao == "3":
             print("Obrigado por usar o Spotifei!")
             break
@@ -37,7 +41,7 @@ def cadastro():
         usuarios.write(f"Nome: {nome}  Email: {email}  Senha: {senha}\n")
     
     print("Cadastro realizado com sucesso!")
-    return menu_inicial()
+    return menu_inicial(nome)
 
 def login():
     print("\n=== Login ===")
@@ -63,49 +67,89 @@ def menu_principal(usuario):
         if opcao == "1":
             buscar_musicas(usuario)
         elif opcao == "2":
-            listar_curtidas(usuario)
+            ...
         elif opcao == "3":
-            print("Logout realizado.") 
+            playlist()
             break
         else:
             print("Opção inválida.")
              
 def buscar_musicas(usuario):
-    while True:
-        nome = input("\n Digite o nome da musica: ").lower() 
-        for m in musicas:
-             if nome in m["titulo"].lower():
-                print(f"{m['titulo']} - {m['artista']} ({m['genero']}, {m['duracao']})")
-                print("1-Curtir Musica")
-                print("2-Descurtir Musica")
-                print("3-Voltar")
-                a = input("escolha uma opção: ")
-             if a == "1":
-                 print("musica curtida.")
-                 open ("musicas_curtidas.txt", "+r")
+        busca = input("\n Digite o nome da musica: ")
+        with open("musicas.txt", "r") as musicas:
+            salve = musicas.readlines()
+            for linha in salve:
+                titulo, nome_artista, genero, duracao = linha.strip().split(", ")
+                if busca.lower() == titulo.lower():
+                    print(f"\n{titulo} - {nome_artista} - {genero} - {duracao}")
+                    print("1-Curtir Musica")
+                    print("2-Descurtir Musica")
+                    print("3-Voltar")
+                    opcao = input("escolha uma opção: ")
+                    if opcao == "1":
+                        print("\n musica curtida.")
+                        with open ("musicas_curtidas.txt", "+r") as musicas_curtidas:
+                            with open  ("historico.txt", "a+") as historico:
+                                historico.write(f"\n {titulo} curtida")
+                                musicas_curtidas.write(f"{titulo}")
+                    elif opcao == "2":
+                        print("musica descurtida.")
+                    elif opcao == "3":
+                        return menu_principal(usuario)  
+                    break      
+                else:
+                    print("Musica não encontrada")
+
+def playlist(): # colocar (nome)
+    print("\n1- Criar Playlist")
+    print("2- Editar Playlist")
+    print("3- Excluir Playlist")
+    print("4- Voltar")
+    a = input("Escolha uma opção: ")
+    if a == "1":
+        # nome_playlist = input("Digite o nome da playlist: ")
+         musicname = input("Digite o nome da musica que deseja adicionar na playlist: ")
+         with open("playlist.txt", "a+") as playlists:
+             with open("musicas.txt","r") as musicas:
+               # with open("cadastros.txt", "r") as cadastro:    isso é pra depois talvez      
+                 leitura = musicas.readlines()
+                 for linha in leitura:         
+                    nome_musica, nome_artista, genero, duracao = linha.strip().split(", ")
+                    if musicname.lower() == nome_musica.lower():
+                       # ver_nome = playlists.readlines()
+                       # for line in ver_nome:
+                           # if nome in line:
+                                playlists.write(f"{nome_musica}\n ")
+                                print("\nmusica adicionada a playlist")
+                                return  playlist()
+                           # else:
+                            #    playlists.write(f"{nome}: {nome_musica}")
+                            #    print("\nmusica adicionada a playlist")
+                             #   return  playlist()
+                    else:
+                        print("Musica não encontrada")
+    if a =='2':
+        nome_playlist2 = input("Digite o nome da playlist que deseja editar")
+        with open("playlist.txt", "r") as playlists2:
+            leitura2 = playlists2.readlines()
+            for linha in leitura2:
+                if nome_playlist2 in linha:
+                    ...
+
+    
+    if a == "3":
+        print("Digite o nome da musica que deseja excluir da playlist: ")
+
+        ...
+    if a =="4":
+        return menu_principal()
 
 
-             elif a == "2":
-                 print("musica descurtida.")
-             elif a == "3":
-                 return menu_principal(usuario)        
-        else:
-            print("Musica não encontrada")
 
-def listar_curtidas(usuario):
-    while True:
-        sla = input
+        
+# Imagine, John Lennon, Rock, 3:04
+# Bohemian Rhapsody, Queen, Rock, 5:55
+# Shape of You, Ed Sheeran, Pop, 4:24
+# Blinding Lights, The Weeknd, Synthpop, 3:20
 
-
-def playslist():
-    ...
-
-
-
-musicas = [
-    {"id": 1, "titulo": "Imagine", "artista": "John Lennon", "genero": "Rock", "duracao": "3:04"},
-    {"id": 2, "titulo": "Bohemian Rhapsody", "artista": "Queen", "genero": "Rock", "duracao": "5:55"},
-    {"id": 3, "titulo": "Shape of You", "artista": "Ed Sheeran", "genero": "Pop", "duracao": "4:24"},
-    {"id": 4, "titulo": "Blinding Lights", "artista": "The Weeknd", "genero": "Synthpop", "duracao": "3:20"},
-]
 menu_inicial()  
