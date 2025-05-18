@@ -8,8 +8,8 @@ SELECT   p.id_pedido,
          p.data_pedido
 FROM     pedido      AS p
 JOIN     clientes    AS c  ON c.rg = p.rg
-WHERE    p.status <> 'Cancelado'          -- filtra
-ORDER BY p.data_pedido DESC;              -- ordena
+WHERE    p.status <> 'Cancelado'          
+ORDER BY p.data_pedido DESC;              
 
 --SEGUNDA CONSULTA
 --para cada transportadora, contar quantas entregas/pedidos ela já fez.
@@ -38,7 +38,7 @@ trazer aquelas cujo número de pedidos é maior ou igual à média geral,
     FROM   transportadora t
     JOIN   entrega        e ON e.id_transportadora = t.id_transportadora
     JOIN   pedido         p ON p.id_entrega       = e.id_entrega
-    WHERE  e.tipo_carga = 'fragil'                     -- apenas carga frágil
+    WHERE  e.tipo_carga = 'fragil'                     
 ),
 pedidos_por_transp AS (
     SELECT id_transportadora,
