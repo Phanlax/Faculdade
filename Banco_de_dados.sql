@@ -12,23 +12,23 @@ drop table if exists carga_grande cascade;
 
 create table clientes (
   rg varchar(12)  primary key,
-  nome varchar(50) not null,
+  nome_cliente varchar(50) not null,
   email varchar(50) not null,
-  telefone char(20) not null,
+  telefone_cliente char(20) not null,
   endereco varchar(100) not null
 );
 
 create table fornecedor (
   id_fornecedor integer primary key,
-  nome varchar(50) not null,
-  telefone char(20) not null,
-  endereço varchar(30) not null
+  nome_fornecedor varchar(50) not null,
+  telefone_fornecedor char(20) not null,
+  endereço_fornecedor varchar(30) not null
 );
 
 create table estoque (
   id_estoque integer primary key,
   Quantidade_estoque integer not null,
-  localização varchar(30) not null
+  localização_estoque varchar(30) not null
   );
 
 create table produtos (
@@ -45,7 +45,7 @@ create table produtos (
 create table transportadora (
   id_transportadora integer primary key,
   nome_transportadora varchar(50) not null,
-  telefone char(20) not null,
+  telefone_transportadora char(20) not null,
   tipo_transporte varchar(30) not null
   );
 
@@ -63,7 +63,7 @@ create table entrega (
 create table pedido (
   id_pedido int primary key,
   data_pedido timestamp not null,
-  status varchar(50) not null,
+  status_pedido varchar(50) not null,
   rg varchar(12),
   id_entrega int,
   foreign key (rg) references clientes (rg),
@@ -83,19 +83,19 @@ create table itens_pedido (
 create table carga_fragil (
     id_entrega int primary key,
     manuseio VARCHAR(100),
-    foreign key (ID_entrega) references entrega(ID_entrega)
+    foreign key (ID_entrega) references entrega(id_entrega)
 );
 
 create table carga_especial (
     id_entrega int primary key,
     cuidado VARCHAR(100),
-    foreign key (ID_entrega) references entrega(ID_entrega)
+    foreign key (ID_entrega) references entrega(id_entrega)
 );
 
 create table carga_grande (
     id_entrega int primary key,
     pessoas_necessarias int,
-    foreign key (ID_entrega) references entrega(ID_entrega)
+    foreign key (ID_entrega) references entrega(id_entrega)
 );
 
 
