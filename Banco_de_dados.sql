@@ -44,7 +44,7 @@ create table produtos (
 
 create table transportadora (
   id_transportadora integer primary key,
-  nome varchar(50) not null,
+  nome_transportadora varchar(50) not null,
   telefone char(20) not null,
   tipo_transporte varchar(30) not null
   );
