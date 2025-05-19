@@ -15,7 +15,7 @@ values
 ('24489375-5', 'Felipe Souza', 'felipe.souza@email.com', '(21) 96655-4433', 'Rua do Sol, 12'),
 ('33265519-2', 'Gabriela Nunes', 'gabriela.nunes@email.com', '(11) 95566-7788', 'Av. Santos Dumont, 1000');
 
-insert into transportadora(id_transportadora, nome, telefone, tipo_transporte)
+insert into transportadora(id_transportadora, nome_transportadora, telefone, tipo_transporte)
 values
 (1, 'TransLog', '1130304040', 'Rodoviário'),
 (2, 'SpeedEntregas', '1140405050', 'Aéreo'),
