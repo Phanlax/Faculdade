@@ -1,8 +1,8 @@
 
 
-insert into clientes (rg, nome, email, telefone, endereco) 
+insert into clientes (rg, nome_cliente, email, telefone_cliente, endereco_cliente) 
 values
-('20163263-9', 'Miguel machado', 'miguel@gmail.com', '(11) 3673-4746', 'Rua Claraboia, 50'),
+('20163263-9', 'Miguel Machado', 'miguel@gmail.com', '(11) 3673-4746', 'Rua Claraboia, 50'),
 ('44057022-0', 'Marcos Santos', 'Marcos@gmail.com', '(11) 98987-5252', 'Rua Castelo Branco, 10'),
 ('24365958-1', 'Carlos Silva', 'carlos@hotmail.com.br', '(11) 3251-2587', 'Avenida Paulista, 1500'),
 ('46435275-7', 'Maria Souza', 'maria@outlook.com', '(21) 2507-8963', 'Rua da Liberdade, 554'),
@@ -15,7 +15,7 @@ values
 ('24489375-5', 'Felipe Souza', 'felipe.souza@email.com', '(21) 96655-4433', 'Rua do Sol, 12'),
 ('33265519-2', 'Gabriela Nunes', 'gabriela.nunes@email.com', '(11) 95566-7788', 'Av. Santos Dumont, 1000');
 
-insert into transportadora(id_transportadora, nome_transportadora, telefone, tipo_transporte)
+insert into transportadora(id_transportadora, nome_transportadora, telefone_transportadora, tipo_transporte)
 values
 (1, 'TransLog', '1130304040', 'Rodoviário'),
 (2, 'SpeedEntregas', '1140405050', 'Aéreo'),
@@ -42,7 +42,7 @@ values
 (14, '2025-05-14', 'Enviado', 4, 'especial'),
 (15, '2025-05-15', 'Em trânsito', 5, 'grande');
 
-insert into pedido (id_pedido, data_pedido, status, rg, id_entrega)
+insert into pedido (id_pedido, data_pedido, status_pedido, rg, id_entrega)
 values
 (1, '2025-05-01 10:00:00', 'Em processamento', '36156120-9', 1),
 (2, '2025-05-02 11:30:00', 'Enviado', '24489375-5', 2),
@@ -78,7 +78,7 @@ values
 (14, 4, 14),
 (15, 2, 15);
 
-insert into estoque (id_estoque, quantidade_estoque, localização)
+insert into estoque (id_estoque, quantidade_estoque, localização_estoque)
 values
 (1, 1000, 'Centro-SP'),
 (2, 750, 'Barueri-SP'),
@@ -91,7 +91,7 @@ values
 
 
 
-insert into fornecedor(id_fornecedor, nome, telefone, endereço)
+insert into fornecedor(id_fornecedor, nome_fornecedor, telefone_fornecedor, endereço_fornecedor)
 values
 (1, 'Tech Distribuidora', '1133345566', 'Rua Tech, 99'),
 (2, 'Max Eletrônicos', '1144456677', 'Av. Central, 45'),
