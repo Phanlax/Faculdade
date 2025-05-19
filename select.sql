@@ -3,7 +3,7 @@
 --lista pedidos não cancelados, mostrando o nome do cliente e ordenando pelos pedidos mais recentes.
 
 SELECT   p.id_pedido,
-         c.nome          AS cliente,
+         c.nome_cliente          AS cliente,
          p.status,
          p.data_pedido
 FROM     pedido      AS p
@@ -14,7 +14,7 @@ ORDER BY p.data_pedido DESC;
 --SEGUNDA CONSULTA
 --para cada transportadora, contar quantas entregas/pedidos ela já fez.
 
-SELECT   t.nome                                     AS transportadora,
+SELECT   t.nome_transportadora                                    AS transportadora,
          COUNT(DISTINCT e.id_entrega)               AS qtd_entregas,
          COUNT(p.id_pedido)                         AS qtd_pedidos
 FROM     transportadora AS t
@@ -24,14 +24,14 @@ GROUP BY t.nome
 ORDER BY qtd_entregas DESC;
 
 --TERCEIRA CONSULTA
-/* entre as transportadoras que lidam com carga frágil, 
-trazer aquelas cujo número de pedidos é maior ou igual à média geral,
+/* entre as transportadoras que tem  carga frágil, 
+trazer aquelas com o número de pedidos é maior ou igual à média geral,
  indicando também a média de dias entre o pedido e a entrega.
  */
  
  WITH pedidos_frágeis AS (
     SELECT t.id_transportadora,
-           t.nome            AS transportadora,
+           t.nome_transportadora           AS transportadora,
            p.id_pedido,
            p.data_pedido,
            e.data_entrega
