@@ -20,7 +20,7 @@ def menu_inicial():
         elif opcao == "2":
              cadastro()
         elif opcao == "3":
-            print("Obrigado por usar o Spotifei!")
+            print("\nObrigado por usar o Spotifei!")
             break 
         else:
             print("Opção inválida.")
