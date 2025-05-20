@@ -21,7 +21,7 @@ def menu_inicial():
              cadastro()
         elif opcao == "3":
             print("Obrigado por usar o Spotifei!")
-            break
+            break 
         else:
             print("Opção inválida.")
 
@@ -38,11 +38,11 @@ def cadastro():
                 print("Este email já está cadastrado.")
                 return
 
-    with open("cadastros.txt", "a") as usuarios:
-        usuarios.write(f"Nome: {nome}  Email: {email}  Senha: {senha}\n")
+    with open("cadastros.txt", "a") as users:
+        users.write(f"Nome: {nome}  Email: {email}  Senha: {senha}\n")
     
     print("Cadastro realizado com sucesso!")
-    return menu_inicial()
+    return 
 
 def login():
     print("\n=== Login ===")
@@ -58,11 +58,11 @@ def login():
 
 def menu_principal(usuario):
     while True:
-        print("\n=== Menu Spotifei ===")
+        print("\n~~~~ Menu Spotifei ~~~~")
         print("1 - Buscar músicas")
         print("2 - Gerenciar Playlist")
         print("3 - Ver histórico")
-        print("4- sair")
+        print("4 - sair")
         opcao = input("Escolha uma opção: ")
         if opcao == "1":
             buscar_musicas(usuario)
@@ -71,7 +71,7 @@ def menu_principal(usuario):
         elif opcao == "3":
             ver_historico(usuario)
         elif opcao == "4":
-           menu_inicial
+           return
         else:
             print("Opção inválida.")
 
@@ -123,11 +123,11 @@ def buscar_musicas(usuario):
                         with open("historico.txt", "a") as historico:
                             historico.write(f"{usuario} : {titulo} - curtida\n")
 
-                        print("Música curtida.")
+                        print("\nMúsica curtida.")
 
                 elif opcao == "2":         
                     if informacoes in descurtidas:
-                        print("Você já descurtiu essa música.")
+                        print("\nVocê já descurtiu essa música.")
                     else:
                         if informacoes in curtidas:              
                             curtidas.remove(informacoes)
@@ -140,7 +140,7 @@ def buscar_musicas(usuario):
                         with open("historico.txt", "a") as historico:
                             historico.write(f"{usuario} : {titulo} - descurtida\n")
 
-                        print("Música marcada como descurtida.")
+                        print("Música descurtida.")
 
                 elif opcao == "3":
                     menu_principal(usuario)
@@ -163,8 +163,8 @@ def playlist(usuario):
         if opcao == "1":
             nome_pl = input("Nome da nova playlist: ").strip()
 
-            with open("playlists.txt", "r") as f:
-                linhas = f.readlines()
+            with open("playlists.txt", "r") as a:
+                linhas = a.readlines()
 
             existencia = False
             for l in linhas:
@@ -179,8 +179,8 @@ def playlist(usuario):
 
             musicas_escolhidas = []
             while True:
-                m = input("Adicione música (ou digite FIM p/ terminar): ").strip()
-                if m.lower() == "fim":
+                m = input("Adicione música (ou digite ENTER para terminar): ").strip()
+                if m.lower() == "":
                     break
 
                 with open("musicas.txt", "r") as mus:
