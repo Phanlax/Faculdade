@@ -29,7 +29,7 @@ trazer aquelas com o número de pedidos é maior ou igual à média geral,
  indicando também a média de dias entre o pedido e a entrega.
  */
  
- WITH pedidos_frágeis AS (
+ WITH pedidos_frageis AS (
     SELECT t.id_transportadora,
            t.nome_transportadora           AS transportadora,
            p.id_pedido,
