@@ -10,6 +10,7 @@ FROM     pedido AS p
 JOIN     clientes AS c ON c.rg = p.rg
 WHERE    p.status_pedido <> 'Cancelado'
 ORDER BY p.data_pedido DESC;
+
 --SEGUNDA CONSULTA
 --para cada transportadora, contar quantas entregas/pedidos ela já fez.
 
@@ -29,28 +30,29 @@ trazer aquelas com o número de pedidos é maior ou igual à média geral,
  indicando também a média de dias entre o pedido e a entrega.
  */
  
- WITH pedidos_frageis AS (
+WITH pedidos_fragil AS (
     SELECT t.id_transportadora,
-           t.nome_transportadora           AS transportadora,
+           t.nome_transportadora AS transportadora,
            p.id_pedido,
            p.data_pedido,
            e.data_entrega
     FROM   transportadora t
-    JOIN   entrega        e ON e.id_transportadora = t.id_transportadora
-    JOIN   pedido         p ON p.id_entrega       = e.id_entrega
-    WHERE  e.tipo_carga = 'fragil'                     
+    JOIN   entrega e ON e.id_transportadora = t.id_transportadora
+    JOIN   pedido  p ON p.id_entrega = e.id_entrega
+    WHERE  e.tipo_carga = 'fragil'
 ),
 pedidos_por_transp AS (
     SELECT id_transportadora,
            COUNT(id_pedido) AS total_pedidos
-    FROM   pedidos_frágeis
+    FROM   pedidos_fragil
     GROUP  BY id_transportadora
 )
 SELECT   pf.transportadora,
          pt.total_pedidos,
-         AVG(DATEDIFF(pf.data_entrega, pf.data_pedido)) AS media_dias
-FROM     pedidos_frágeis      pf
-JOIN     pedidos_por_transp    pt ON pt.id_transportadora = pf.id_transportadora
-WHERE    pt.total_pedidos >= (SELECT AVG(total_pedidos) FROM pedidos_por_transp)
+         AVG(pf.data_entrega - pf.data_pedido) AS media_dias
+FROM     pedidos_fragil pf
+JOIN     pedidos_por_transp pt ON pt.id_transportadora = pf.id_transportadora
+WHERE    pt.total_pedidos >= (SELECT AVG(total_pedidos)::numeric FROM pedidos_por_transp)
 GROUP BY pf.transportadora, pt.total_pedidos
 ORDER BY pt.total_pedidos DESC;
+
