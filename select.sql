@@ -3,14 +3,13 @@
 --lista pedidos não cancelados, mostrando o nome do cliente e ordenando pelos pedidos mais recentes.
 
 SELECT   p.id_pedido,
-         c.nome_cliente          AS cliente,
-         p.status,
+         c.nome_cliente AS cliente,
+         p.status_pedido,
          p.data_pedido
-FROM     pedido      AS p
-JOIN     clientes    AS c  ON c.rg = p.rg
-WHERE    p.status <> 'Cancelado'          
-ORDER BY p.data_pedido DESC;              
-
+FROM     pedido AS p
+JOIN     clientes AS c ON c.rg = p.rg
+WHERE    p.status_pedido <> 'Cancelado'
+ORDER BY p.data_pedido DESC;
 --SEGUNDA CONSULTA
 --para cada transportadora, contar quantas entregas/pedidos ela já fez.
 
