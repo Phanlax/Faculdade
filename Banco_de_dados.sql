@@ -15,7 +15,7 @@ create table clientes (
   nome_cliente varchar(50) not null,
   email varchar(50) not null,
   telefone_cliente char(20) not null,
-  endereco varchar(100) not null
+  endereco_cliente varchar(100) not null
 );
 
 create table fornecedor (
