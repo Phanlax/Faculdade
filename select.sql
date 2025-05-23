@@ -14,14 +14,15 @@ ORDER BY p.data_pedido DESC;
 --SEGUNDA CONSULTA
 --para cada transportadora, contar quantas entregas/pedidos ela já fez.
 
-SELECT   t.nome_transportadora                                    AS transportadora,
-         COUNT(DISTINCT e.id_entrega)               AS qtd_entregas,
-         COUNT(p.id_pedido)                         AS qtd_pedidos
+SELECT   t.nome_transportadora                    AS transportadora,
+         COUNT(DISTINCT e.id_entrega)             AS qtd_entregas,
+         COUNT(p.id_pedido)                       AS qtd_pedidos
 FROM     transportadora AS t
-JOIN     entrega        AS e  ON e.id_transportadora = t.id_transportadora
-JOIN     pedido         AS p  ON p.id_entrega       = e.id_entrega
-GROUP BY t.nome
+JOIN     entrega        AS e ON e.id_transportadora = t.id_transportadora
+JOIN     pedido         AS p ON p.id_entrega = e.id_entrega
+GROUP BY t.nome_transportadora
 ORDER BY qtd_entregas DESC;
+
 
 --TERCEIRA CONSULTA
 /* entre as transportadoras que tem  carga frágil, 
